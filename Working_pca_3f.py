@@ -53,9 +53,9 @@ parsed_names = []
 for name in names:
    parsed_names.append(name.split('.')[0])
 
-tissue_names,pca_out,color_map=PCAfy(Data)
+tissue_names,pca_out,color_map = PCAfy(Data)
 
-colortissue=[color_map[tissue] for tissue in parsed_names]
+colortissue = [color_map[tissue] for tissue in parsed_names]
 
 fig = pylab.figure()
 ax = Axes3D(fig)
