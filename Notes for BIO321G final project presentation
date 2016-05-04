@@ -1,0 +1,30 @@
+Notes for final project presentation
+
+1. Background on Data Set:
+	data set is gene expression (rna-seq)
+	samples are different tissue types
+		maybe image/list of different tissue types?
+	"has been set up to allow for a systematic exploration of the human proteome using antibody-based proteomics."
+	"The main objective of the resource centre is to produce specific antibodies to human target proteins using a high-throughput production method involving the cloning and protein expression of Protein Epitope Signature Tags (PrESTs)"
+	Use one/more of the figures in the original papers?
+
+2. Analysis Aims
+	We wanted to train a model for classifying tissue type based on gene expression levels (from rna-seq data).
+	The questions we wanted to answer were:
+		How does gene expression vary across tissue types?
+		Are there sub-types of tissues, or are there tissue types that have similar gene expression levels?
+		What applications or generalizations could a model for classifying tissue type be applied to?
+
+3. Analysis Plan
+	We intended to use a machine learning approach.
+		However, none of us has significant background knowledge in that field
+		So we started by doing research on a library scikit-learn which provides methods for data analysis through machine learning.
+	One of the techniques we discovered was principal components analysis:
+		go into description of PCA and how it applies...
+	So we wrote code (using scikit-learn) to perform a PCA reduction on our dataset and got these results
+		show figures, 2D of first and second component, 3D of first three components, maybe 2D of second and third components
+
+4. Results
+	show figures created from PCA
+	discuss how the results from PCA could be useful in future research/development of a classification model
+		clustering from PCA essentially proves that classification in the manner we wish is possible!
