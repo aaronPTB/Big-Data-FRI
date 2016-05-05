@@ -23,7 +23,7 @@ print("Data Set created")
 import random
 
 #plt.plot(exp_lvl.mean().values)
-def PCAfy(exp_lvl):
+def PCAfy(exp_lvl, components):
     
     names=exp_lvl.index.values
     tissue_names=set([])
@@ -37,7 +37,7 @@ def PCAfy(exp_lvl):
     
     exp_lvl=exp_lvl.fillna(0)
     
-    pca = decomposition.PCA(n_components=124)
+    pca = decomposition.PCA(n_components=components)
     pca.fit(exp_lvl)
     df_PCA = pca.transform(exp_lvl)
     
