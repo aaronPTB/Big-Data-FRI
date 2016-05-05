@@ -1,14 +1,20 @@
 from normal_tissue_extract import transcript_df
 
 import matplotlib.pyplot as plt
+import random
 import numpy as np
+import pylab
+import re
 
+from mpl_toolkits.mplot3d import Axes3D
 from sklearn import decomposition
 from sklearn import datasets
-
+from sklearn.cluster import KMeans
+from scipy.spatial   import Voronoi, voronoi_plot_2d
 #print(transcript_df.shape)
 
 Data=transcript_df[1:]
+Data=np.log2(Data.fillna(0) + 1)
 print("Data Set created")
 
 
@@ -31,21 +37,15 @@ def PCAfy(exp_lvl):
     
     exp_lvl=exp_lvl.fillna(0)
     
-    pca = decomposition.PCA(n_components=2)
+    pca = decomposition.PCA(n_components=124)
     pca.fit(exp_lvl)
     df_PCA = pca.transform(exp_lvl)
     
-    return(tissue_names,df_PCA.transpose()[0],df_PCA.transpose()[1],color_map)
+    return(tissue_names,df_PCA.transpose(),color_map)
     
 
 
-
-
-tissue_names,X,Y,color_map=PCAfy(Data)
-
-colortissue=[color_map[tissue] for tissue in tissue_names]
-
-plt.scatter(X,Y,color=colortissue)
-
-    
-
+names = Data.index.values
+parsed_names = []
+for name in names:
+   parsed_names.append(name.split('.')[0])

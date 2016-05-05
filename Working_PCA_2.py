@@ -5,11 +5,7 @@ tissue_names,XY_coords,color_map=PCAfy(Data,2)
 X = XY_coords[0]
 Y = XY_coords[1]
 colortissue=[color_map[tissue] for tissue in parsed_names]
-print(color_map)
-print(tissue_names)
-print(len(X))
-print(len(Y))
-print(len(colortissue))
+
 ## labeling for tissue types
 fig, ax = plt.subplots()
 last_name = 'empty'
