@@ -1,8 +1,8 @@
 from PCA import *
 
-tissue_names,pca_out,color_map = PCAfy(Data)
+tissue_names,pca_out,color_map = PCAfy(Data,124)
 
-kmeans = KMeans(n_clusters=16)
+kmeans = KMeans(n_clusters=32)
 
 kmeans_out = kmeans.fit(pca_out.transpose())
 
