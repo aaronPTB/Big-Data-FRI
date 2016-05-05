@@ -1,4 +1,4 @@
-from normal_tissue_extract import transcript_df
+from Normal_tissue_extract import transcript_df
 
 import matplotlib.pyplot as plt
 import random
