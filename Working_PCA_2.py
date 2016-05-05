@@ -13,7 +13,6 @@ X_index = 0
 Y_index = 0
 for name1 in names:
   if(name1!=last_name):
-    print(last_name)
     last_name = name1
     ax.annotate(name1, xy=(X[X_index],Y[Y_index]), xytext=(-1,1), 
             textcoords='offset points', ha='center', va='bottom',
