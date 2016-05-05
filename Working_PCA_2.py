@@ -47,11 +47,7 @@ for name in names:
 tissue_names,X,Y,color_map=PCAfy(Data)
 clustered_types = Y[Y > 176]
 colortissue=[color_map[tissue] for tissue in parsed_names]
-print(color_map)
-print(tissue_names)
-print(len(X))
-print(len(Y))
-print(len(colortissue))
+
 ## labeling for tissue types
 fig, ax = plt.subplots()
 last_name = 'empty'
