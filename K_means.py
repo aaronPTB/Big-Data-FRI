@@ -3,11 +3,13 @@ from normal_tissue_extract import transcript_df
 import matplotlib.pyplot as plt
 import numpy as np
 import pylab
+import re
 
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn import decomposition
 from sklearn import datasets
 from sklearn.cluster import KMeans
+from scipy.spatial   import Voronoi, voronoi_plot_2d
 #print(transcript_df.shape)
 
 Data=transcript_df[1:]
@@ -34,7 +36,7 @@ def PCAfy(exp_lvl):
     
     exp_lvl=exp_lvl.fillna(0)
     
-    pca = decomposition.PCA(n_components=124)
+    pca = decomposition.PCA(n_components=32)
     pca.fit(exp_lvl)
     df_PCA = pca.transform(exp_lvl)
     
@@ -55,28 +57,28 @@ for name in names:
 
 tissue_names,pca_out,color_map = PCAfy(Data)
 
-kmeans=KMeans(n_clusters=32)
+kmeans=KMeans(n_clusters=10)
 
 kmeans_out=kmeans.fit(pca_out.transpose())
 
-#print(kmeans_out.cluster_centers_)
-
-a=[]
-a.append(kmeans.labels_)
-a.append(names)
-a=np.array(a).transpose()
-
-print(a)
-
-
+centers = kmeans_out.cluster_centers_
+labels  = kmeans_out.labels_
 
 
 """
-colortissue = [color_map[tissue] for tissue in parsed_names]
+tissue_vor = Voronoi(centers)
+voronoi_plot_2d(tissue_vor)
 
-fig = pylab.figure()
-ax = Axes3D(fig)
-
-ax.scatter(*pca_out,c=colortissue)
-plt.show()
 """
+
+new_names = [re.sub(r"\..*$","",tissue_name) for tissue_name in names]
+
+a = [set([]) for _ in np.unique(labels)]
+
+for i in range(len(labels)):
+    idx = labels[i]
+    a[idx].add(new_names[i])
+
+b = [str(s) for s in a]
+
+print("\n".join(b))
