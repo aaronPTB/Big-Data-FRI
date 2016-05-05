@@ -4,8 +4,10 @@ from pandas import DataFrame
 import matplotlib as mpl
 import random
 from sets import Set
-transcript_df = DataFrame.from_csv('transcript_rna_tissue.tsv', sep='\t', header=0).transpose()
-## t_df_mean = pandas.DataFrame(transcript_df.mean)
+transcript_df = DataFrame.from_csv('transcript_rna_tissue.tsv', sep='\t', header=0)
+transcript_df = transcript_df.rename(columns=lambda x: x.split('.')[0])
+transcript_df = transcript_df.transpose()
+
 df_names = transcript_df.index.values
 tissue_names = Set([])
 for name in df_names:
